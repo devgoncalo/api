@@ -8,36 +8,36 @@ import { prisma } from "../../lib/prisma";
 import { env } from "../../env";
 
 export async function createUploadURL(app: FastifyInstance) {
-  app.post('/uploads', async (request) => {
+  app.post("/uploads", async (request) => {
     const uploadBodySchema = z.object({
       name: z.string().min(1),
       contentType: z.string().regex(/\w+\/[-+.\w]+/),
-    })
-  
-    const { name, contentType } = uploadBodySchema.parse(request.body)
-  
-    const fileKey = randomUUID().concat('-').concat(name)
-  
+    });
+
+    const { name, contentType } = uploadBodySchema.parse(request.body);
+
+    const fileKey = randomUUID().concat("-").concat(name);
+
     const signedUrl = await getSignedUrl(
       r2,
       new PutObjectCommand({
-        Bucket: 'uploadify',
+        Bucket: "uploadify",
         Key: fileKey,
         ContentType: contentType,
       }),
-      { expiresIn: 600 },
-    )
-  
+      { expiresIn: 600 }
+    );
+
     const file = await prisma.file.create({
       data: {
         name,
         contentType,
         key: fileKey,
-      }
-    })
+      },
+    });
 
-    const downloadUrl = new URL(`/uploads/${file.id}`, env.API_URL).toString()
-  
-    return { signedUrl, downloadUrl }
-  })
+    const downloadUrl = new URL(`/uploads/${file.id}`, env.API_URL).toString();
+
+    return { signedUrl, downloadUrl };
+  });
 }

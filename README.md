@@ -36,7 +36,7 @@ const bannedMimeTypes = [
 ];
 ```
 
-### Trechos de código
+### Códigos Importantes
 
 #### Conexão com Cloudflare (AWS SDK)
 
