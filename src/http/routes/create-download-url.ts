@@ -22,7 +22,7 @@ export async function createDownloadURL(app: FastifyInstance) {
     const signedUrl = await getSignedUrl(
       r2,
       new GetObjectCommand({
-        Bucket: 'uploadify',
+        Bucket: 'filebird',
         Key: file.key,
       }),
       { expiresIn: 600 },

@@ -21,7 +21,7 @@ export async function createUploadURL(app: FastifyInstance) {
     const signedUrl = await getSignedUrl(
       r2,
       new PutObjectCommand({
-        Bucket: "uploadify",
+        Bucket: "filebird",
         Key: fileKey,
         ContentType: contentType,
       }),

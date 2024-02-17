@@ -1,22 +1,21 @@
-# uploadify
+# filebird
 
 Stack: Node.js, Fastify, Prisma, Cloudflare R2
 
 ## Requisitos
 
 ### Requisitos Funcionais (RFs):
-- [ ] Deve ser possível realizar novos uploads;
+- [x] Deve ser possível realizar novos uploads;
 - [ ] Deve ser possível visualizar os últimos 5 uploads realizados;
 
 ### Regras de Negócio (RNs):
-- [ ] Os uploads devem ser removidos automaticamente após 7 dias ou não;
-- [ ] Só deve ser possível visualizar uploads não expirados;
+- [ ] Os uploads não devem ser removidos;
 - [ ] Só deve ser possível realizar upload de arquivos seguros;
 - [ ] Só deve ser possível upload de arquivos até 1gb cada;
 
 ### Requisitos Não Funcionais (RNFs):
-- [ ] Utilização do Cloudflare R2 para upload de arquivos;
-- [ ] O upload deve ser feito diretamente pelo front-end utilizando Presigned URLs;
+- [x] Utilização do Cloudflare R2 para upload de arquivos;
+- [x] O upload deve ser feito diretamente pelo front-end utilizando Presigned URLs;
 - [ ] Os links para compartilhamento devem ser assinados evitando acesso público;
 
 ## Anotações importantes
